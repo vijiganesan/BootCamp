@@ -33,19 +33,26 @@ public class S08_86_CreateNewChart {
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
 
-		Thread.sleep(2000);
-		//a[@class="switch-to-lightning"]
+		Thread.sleep(5000);
+	
+		//String landingPage = driver.findElement(By.xpath("//div//li/a")).getText();//"Switch to Lightning Experience"
 		
-		String landingPage = driver.findElement(By.xpath("//div//li/a")).getText();//"Switch to Lightning Experience"
+		String pageTitle = driver.getTitle();
+		System.out.println(pageTitle);
 		
-		if (!(landingPage.equals("Home"))) {
+		
+		if (!pageTitle.equals("Home | Salesforce") && !pageTitle. equals("Lightning Experience")) {
+		//if(pageTitle.contains("Lightning")) {
 			driver.findElement(By.xpath("//a[@class='switch-to-lightning']")).click();
 			Thread.sleep(7000);
+			System.out.println("Printing ------------- inside if");
 		}
-
-		// 2. Click on the toggle menu button from the left corner
+		Thread.sleep(7000);
+		System.out.println("Printing ------------- 1");
+		// 2. Click on menu button from the Left corner
 		WebElement waffle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		driver.executeScript("arguments[0].click();", waffle);
+		System.out.println("Printing ------------- 2");
 
 		//3. Click view All and click Service Console from App Launcher
 		driver.findElement(By.xpath("//button[text()='View All']")).click();
