@@ -31,9 +31,18 @@ public class S08_86_CreateNewChart {
 		driver.findElement(By.id("Login")).click();
 
 		Thread.sleep(2000);
+		//a[@class="switch-to-lightning"]
+		
+		//String landingPage = driver.findElement(By.xpath("//a[@class='switch-to-lightning']")).getText();--"Switch to Lightning Experience"
+		
+		if (!(driver.findElement(By.xpath("//span[text()='Home']")).getText().equals("Home"))) {
+			driver.findElement(By.xpath("//a[@class='switch-to-lightning']")).click();
+			Thread.sleep(7000);
+		}
 
 		// 2. Click on the toggle menu button from the left corner
-		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
+		WebElement waffle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
+		driver.executeScript("arguments[0].click();", waffle);
 
 		//3. Click view All and click Service Console from App Launcher
 		driver.findElement(By.xpath("//button[text()='View All']")).click();
@@ -49,6 +58,11 @@ public class S08_86_CreateNewChart {
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//button[@title='Select a List View']")).click();
 		driver.findElement(By.xpath("//span[text()='All']")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//button[@title='Display as Table']//lightning-primitive-icon")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//li[@title=\"Table\"]")).click();
 		
 		//6. Click on Chart icon under New Button
 		Thread.sleep(2000);
@@ -66,19 +80,31 @@ public class S08_86_CreateNewChart {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[@class='slds-form-element__control slds-grow']/input")).sendKeys("Viji Ganesan");
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Horizontal Bar Chart']")).click();
-		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Vertical Bar Chart']")).click();
+		WebElement horizontalBarChart = driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Horizontal Bar Chart']"));
+		driver.executeScript("arguments[0].click();", horizontalBarChart);
+		
+		WebElement verticalBarChart = driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Vertical Bar Chart']"));
+		driver.executeScript("arguments[0].click();", verticalBarChart);
+		
 		
 		//9. Select Aggregate Type as Average 
 		driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Count']")).click();
 		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Average']")).click();
+		
 		//and aggregate Field as Amount
-		driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Account']")).click();
-		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Amount']")).click();
+		WebElement aggFieldAccount =driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Account']"));
+		driver.executeScript("arguments[0].scrollIntoView(true);", aggFieldAccount);
+		driver.executeScript("arguments[0].click();", aggFieldAccount);
+		
+		WebElement aggFieldAmount = driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Amount']"));
+		driver.executeScript("arguments[0].click();", aggFieldAmount);
 		
 		
 		//10. Select Grouping Field as Account 
-		driver.findElement(By.xpath("(//div[@class='uiMenu']//a[text()='Account'])[2]")).click();
+		WebElement grpFieldAccount = driver.findElement(By.xpath("//span[text()='Grouping Field']//following::a[@class='select']"));
+		driver.executeScript("arguments[0].scrollIntoView(true);", grpFieldAccount);
+		driver.executeScript("arguments[0].click();", grpFieldAccount);
+		
 		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Account']")).click();
 		
 		//and click Save

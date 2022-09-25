@@ -58,7 +58,7 @@ public class S08_31_EditAccounts {
 		
 		//6) Search for the Account Using the unique account name created by you 
 		//input[@type='search']
-		String searchAccText = "Viji Ganesan";
+		String searchAccText = "SF AT by Viji Ganesan for Edit";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Account-search-input']"));
 		search.sendKeys(searchAccText,Keys.ENTER);
 		Thread.sleep(3000);

@@ -56,7 +56,7 @@ public class S08_30_CreateAccounts {
 		driver.findElement(By.xpath("//div[@title='New']")).click();
 		
 		//6. Enter 'your name' as account name
-		String accName = "Viji Ganesan";
+		String accName = "New Account";
 		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(accName);
 		
 		//7. Select Ownership as Public  

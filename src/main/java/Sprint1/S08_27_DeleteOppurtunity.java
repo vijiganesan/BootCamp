@@ -55,7 +55,7 @@ public class S08_27_DeleteOppurtunity {
 
 		// 5. Search the Opportunity 'Salesforce Automation by Your Name'
 		//driver.findElement(By.xpath("//input[@name='Opportunity-search-input']")).sendKeys("Salesforce Automation by Viji"+Keys.ENTER);
-		String searchOppText = "Salesforce Automation by Viji";
+		String searchOppText = "SF AT by Viji Ganesan for Deletion";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Opportunity-search-input']"));
 		search.sendKeys(searchOppText);
 		search.sendKeys(Keys.ENTER);

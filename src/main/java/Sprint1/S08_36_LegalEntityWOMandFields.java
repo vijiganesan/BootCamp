@@ -7,12 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S08_36_LegalEntityWOMandFields {
-
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	//public static void main(String[] args) throws InterruptedException {
+	public void TC_S08_36() throws InterruptedException {
 		//1. Login to https://login.salesforce.com
 				//download the chromedriver and set the path
 				WebDriverManager.chromedriver().setup();

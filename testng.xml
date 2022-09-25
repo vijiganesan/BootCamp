@@ -5,12 +5,30 @@
     <classes>
       <class name="Sprint1.S08_25_CreateOpportunity"/>
       <class name="Sprint1.S08_26_EditOpportunity"/>
+      <class name="Sprint1.S08_27_DeleteOppurtunity"/>  
     </classes>
   </test> <!-- Test -->
-    <test name="Account" >
+  <test name="Account" >
     <classes>
       <class name="Sprint1.S08_30_CreateAccounts"/>
-      <class name="Sprint1.S08_31_EditAccounts"/>
+      <class name="Sprint1.S08_31_EditAccounts"/> 
+      <class name="Sprint1.S08_32_DeleteAccount"/>   
+    </classes>
+  </test> <!-- Test -->
+  <test name="LegalEntity" >
+    <classes>
+      <class name="Sprint1.S08_34_CreateLegalEntity"/>
+      <class name="Sprint1.S08_35_EditLegalEntity"/> 
+      <class name="Sprint1.S08_38_DeleteLegalEntity"/>   
+      <class name="Sprint1.S08_36_LegalEntityWOMandFields"/> 
+    </classes>
+  </test> <!-- Test -->
+  <test name="WorkTypeGroups" >
+    <classes>
+      <class name="Sprint1.S08_49_CreateWorkTypeGroups"/>
+      <class name="Sprint1.S08_50_EditWorkTypeGroup"/> 
+      <class name="Sprint1.S08_51_DeleteWorkTypeGroup"/> 
+      <class name="Sprint1.S08_52_WorkTypeGroupWOMandFields"/>  
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

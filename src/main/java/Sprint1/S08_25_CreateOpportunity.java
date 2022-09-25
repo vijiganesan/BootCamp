@@ -61,7 +61,7 @@ public class S08_25_CreateOpportunity {
 		driver.findElement(By.linkText("New")).click();
 		
 		//6. Enter Opportunity name as 'Salesforce Automation by Your Name,Get the text and Store it 
-		String oppName = "Salesforce Automation by Viji";
+		String oppName = "New Opportunity";
 		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(oppName);
 				
 		//7. Choose close date as Today
