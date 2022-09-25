@@ -1,17 +1,20 @@
 package Sprint1;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S08_86_CreateNewChart {
-
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	//public static void main(String[] args) throws InterruptedException {
+	public void TC_S08_86() throws InterruptedException {
 
 		// 1. Login to https://login.salesforce.com
 		// download the chromedriver and set the path
@@ -33,9 +36,9 @@ public class S08_86_CreateNewChart {
 		Thread.sleep(2000);
 		//a[@class="switch-to-lightning"]
 		
-		//String landingPage = driver.findElement(By.xpath("//a[@class='switch-to-lightning']")).getText();--"Switch to Lightning Experience"
+		String landingPage = driver.findElement(By.xpath("//div//li/a")).getText();//"Switch to Lightning Experience"
 		
-		if (!(driver.findElement(By.xpath("//span[text()='Home']")).getText().equals("Home"))) {
+		if (!(landingPage.equals("Home"))) {
 			driver.findElement(By.xpath("//a[@class='switch-to-lightning']")).click();
 			Thread.sleep(7000);
 		}
@@ -60,9 +63,16 @@ public class S08_86_CreateNewChart {
 		driver.findElement(By.xpath("//span[text()='All']")).click();
 		Thread.sleep(2000);
 		
-		driver.findElement(By.xpath("//button[@title='Display as Table']//lightning-primitive-icon")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//li[@title=\"Table\"]")).click();
+		try {
+			driver.findElement(By.xpath("//button[@title='Display as Split View']//lightning-primitive-icon")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//li[@title=\"Table\"]")).click();
+		} catch (Exception e) {
+			System.out.println("inside catch ------------ ");
+			driver.findElement(By.xpath("//button[@title='Display as Table']//lightning-primitive-icon")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//li[@title=\"Table\"]")).click();
+		}
 		
 		//6. Click on Chart icon under New Button
 		Thread.sleep(2000);
@@ -72,8 +82,17 @@ public class S08_86_CreateNewChart {
 		
 		//7. Click New Chart
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//a[@class='trigger']/lightning-icon")).click();
-		driver.findElement(By.xpath("//a[@title='New Chart']")).click();
+		try {
+			driver.findElement(By.xpath("//a[@class='trigger']/lightning-icon")).click();
+			driver.findElement(By.xpath("//a[@title='New Chart']")).click();
+		} catch (Exception e) {
+			//System.out.println("inside catch : "+e.getMessage());
+			System.out.println("inside catch ------------ ");
+			driver.findElement(By.xpath("//span[text()='New Chart']")).click();
+		}
+		
+		//driver.findElement(By.xpath("//a[@class='trigger']/lightning-icon")).click();
+		//driver.findElement(By.xpath("//a[@title='New Chart']")).click();
 		//driver.findElement(By.xpath("//span[text()='New Chart']")).click();
 		
 		//8. Give Chart Name and Select Chart Type
@@ -92,20 +111,24 @@ public class S08_86_CreateNewChart {
 		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Average']")).click();
 		
 		//and aggregate Field as Amount
-		WebElement aggFieldAccount =driver.findElement(By.xpath("//div[@class='uiMenu']//a[text()='Account']"));
+		WebElement aggFieldAccount =driver.findElement(By.xpath("//span[text()='Aggregate Field']//following::a[@class='select']"));
 		driver.executeScript("arguments[0].scrollIntoView(true);", aggFieldAccount);
 		driver.executeScript("arguments[0].click();", aggFieldAccount);
 		
 		WebElement aggFieldAmount = driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Amount']"));
+		driver.executeScript("arguments[0].scrollIntoView(true);", aggFieldAmount);
 		driver.executeScript("arguments[0].click();", aggFieldAmount);
 		
-		
+	// ---- its not working -----------------	
 		//10. Select Grouping Field as Account 
 		WebElement grpFieldAccount = driver.findElement(By.xpath("//span[text()='Grouping Field']//following::a[@class='select']"));
 		driver.executeScript("arguments[0].scrollIntoView(true);", grpFieldAccount);
 		driver.executeScript("arguments[0].click();", grpFieldAccount);
 		
-		driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Account']")).click();
+		WebElement grpFieldSel = driver.findElement(By.xpath("//div[@class='select-options']//a[@title='Account']"));
+		driver.executeScript("arguments[0].scrollIntoView(true);", grpFieldSel);
+		driver.executeScript("arguments[0].click();", grpFieldSel);
+	
 		
 		//and click Save
 		driver.findElement(By.xpath("//button[@title='Save']")).click();
@@ -121,7 +144,6 @@ public class S08_86_CreateNewChart {
 		System.out.println("End --------------------- !");
 		
 		driver.close();
-		
 
 	}
 

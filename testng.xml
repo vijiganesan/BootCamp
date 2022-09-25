@@ -31,4 +31,9 @@
       <class name="Sprint1.S08_52_WorkTypeGroupWOMandFields"/>  
     </classes>
   </test> <!-- Test -->
+  <test name="Refund" >
+    <classes>
+      <class name="Sprint1.S08_86_CreateNewChart"/>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->
