@@ -13,11 +13,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_49_CreateWorkTypeGroups {
-	@Test
+public class S08_49_CreateWorkTypeGroups extends ParentClass {
+	@Test(priority=1)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_49() throws InterruptedException {
-		// 1. Login to https://login.salesforce.com
+	public void runCreateWorkTypeGroups() throws InterruptedException {
+	/*	// 1. Login to https://login.salesforce.com
 		// download the chromedriver and set the path
 		WebDriverManager.chromedriver().setup();
 
@@ -34,7 +34,7 @@ public class S08_49_CreateWorkTypeGroups {
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
 
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 
 		// 2. Click on the toggle menu button from the left corner
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();

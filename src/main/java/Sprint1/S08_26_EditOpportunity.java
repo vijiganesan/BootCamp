@@ -12,29 +12,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_26_EditOpportunity {
-	@Test
+public class S08_26_EditOpportunity extends ParentClass {
+	@Test(priority=2)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_26() throws InterruptedException {
-		// download the chromedriver and set the path
-		WebDriverManager.chromedriver().setup();
-
-		// Handle Notification
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-
-		ChromeDriver driver = new ChromeDriver(options);
-
-		driver.manage().window().maximize();
-
-		// 1. Login to https://login.salesforce.com
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.id("Login")).click();
-
-		Thread.sleep(2000);
+	public void runEditOpportunity() throws InterruptedException {
 
 		// 2. Click on toggle menu button from the left corner
 
@@ -54,7 +35,7 @@ public class S08_26_EditOpportunity {
 
 		// 5. Search the Opportunity 'Salesforce Automation by Your Name'
 		//driver.findElement(By.xpath("//input[@name='Opportunity-search-input']")).sendKeys("Salesforce Automation by Viji" + Keys.ENTER);
-		String searchOppText = "SF AT by Viji Ganesan for Edit";
+		String searchOppText = "Salesforce Automation by Viji Ganesan";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Opportunity-search-input']"));
 		search.sendKeys(searchOppText,Keys.ENTER);
 		
@@ -103,8 +84,6 @@ public class S08_26_EditOpportunity {
 	//	System.out.println("after assertion");
 		System.out.println("End!---------------");
 		Thread.sleep(3000);
-		
-		driver.close();
 
 	}
 

@@ -15,31 +15,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_25_CreateOpportunity {
-	@Test
+public class S08_25_CreateOpportunity extends ParentClass {
+	@Test(priority=1)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_25() throws InterruptedException {
+	public void runCreateOpportunity() throws InterruptedException {
 		
-		//download the chromedriver and set the path
-		WebDriverManager.chromedriver().setup();
-		
-		//Handle Notification
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		
-		ChromeDriver driver = new ChromeDriver(options);
-		
-		driver.manage().window().maximize();
-		
-		//1. Login to https://login.salesforce.com
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.id("Login")).click();
-		
-		Thread.sleep(2000);		
-
 		//2. Click on toggle menu button from the left corner
 		
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
@@ -61,7 +41,7 @@ public class S08_25_CreateOpportunity {
 		driver.findElement(By.linkText("New")).click();
 		
 		//6. Enter Opportunity name as 'Salesforce Automation by Your Name,Get the text and Store it 
-		String oppName = "New Opportunity";
+		String oppName = "Salesforce Automation by Viji Ganesan";
 		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(oppName);
 				
 		//7. Choose close date as Today
@@ -97,12 +77,7 @@ public class S08_25_CreateOpportunity {
 		
 	//	System.out.println(oppCreatedToast);
 		Thread.sleep(3000);
-		
-		driver.close();
-
-		
-				
-		
+	
 	}
 
 }

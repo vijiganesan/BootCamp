@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_85_CreateNewRefund {
-	@Test
+public class S08_85_CreateNewRefund extends ParentClass {
+	@Test(priority=1)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_85() throws InterruptedException {
+	public void runCreateNewRefund() throws InterruptedException {
 
-		// 1. Login to https://login.salesforce.com/?locale=in
+/*	// 1. Login to https://login.salesforce.com/?locale=in
 		// download the chromedriver and set the path
 		WebDriverManager.chromedriver().setup();
 
@@ -31,7 +31,7 @@ public class S08_85_CreateNewRefund {
 		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
-
+*/
 		Thread.sleep(5000);
 		//String landingPage = driver.findElement(By.xpath("//div//li/a")).getText();//"Switch to Lightning Experience"
 		
@@ -106,6 +106,8 @@ public class S08_85_CreateNewRefund {
 		driver.findElement(By.xpath("//button[@title='Save']")).click();
 		
 		System.out.println("End!-----------------------!");
+		
+		//driver.close();
 	}
 
 }

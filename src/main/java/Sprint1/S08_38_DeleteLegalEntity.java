@@ -12,11 +12,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_38_DeleteLegalEntity {
-	@Test
+public class S08_38_DeleteLegalEntity extends ParentClass {
+	@Test(priority=3)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_38() throws InterruptedException {
-		//1. Login to https://login.salesforce.com
+	public void runDeleteLegalEntity() throws InterruptedException {
+	/*	//1. Login to https://login.salesforce.com
 		//download the chromedriver and set the path
 		WebDriverManager.chromedriver().setup();
 		
@@ -33,7 +33,7 @@ public class S08_38_DeleteLegalEntity {
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
 		
-		Thread.sleep(2000);	
+		Thread.sleep(2000);	*/
 		
 		//2. Click on the toggle menu button from the left corner
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
@@ -49,7 +49,7 @@ public class S08_38_DeleteLegalEntity {
 		
 		//5) Search the Legal Entity 'Salesforce Automation by Your Name'
 		//input[@type='search']
-		String searchLegalEntityText = "Viji Ganesan";
+		String searchLegalEntityText = "Salesforce Automation by Viji Ganesan";
 		WebElement search = driver.findElement(By.xpath("//input[@name='LegalEntity-search-input']"));
 		search.sendKeys(searchLegalEntityText,Keys.ENTER);
 		
@@ -66,7 +66,7 @@ public class S08_38_DeleteLegalEntity {
 		//System.out.println(searchResult);
 		Assert.assertEquals(searchResult, "No items to display.");
 		System.out.println("End");
-		driver.close();
+	//	driver.close();
 		
 		
 

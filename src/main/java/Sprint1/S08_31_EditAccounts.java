@@ -12,33 +12,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_31_EditAccounts {
-	@Test
+public class S08_31_EditAccounts extends ParentClass {
+	@Test(priority=2)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_31() throws InterruptedException {
-		// TODO Auto-generated method stub
-		//download the chromedriver and set the path
-		WebDriverManager.chromedriver().setup();
-						
-		//Handle Notification
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-						
-		ChromeDriver driver = new ChromeDriver(options);
-						
-		driver.manage().window().maximize();
-						
-		//1. Login to https://login.salesforce.com
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		//3) Login with the credentials
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		
-		//2) Click Login
-		driver.findElement(By.id("Login")).click();
-		Thread.sleep(2000);		
+	public void runEditAccounts() throws InterruptedException {
 
 		//2. Click on toggle menu button from the left corner
 						
@@ -58,7 +35,7 @@ public class S08_31_EditAccounts {
 		
 		//6) Search for the Account Using the unique account name created by you 
 		//input[@type='search']
-		String searchAccText = "SF AT by Viji Ganesan for Edit";
+		String searchAccText = "Salesforce Automation by Viji Ganesan";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Account-search-input']"));
 		search.sendKeys(searchAccText,Keys.ENTER);
 		Thread.sleep(3000);
@@ -141,8 +118,7 @@ public class S08_31_EditAccounts {
 		driver.findElement(By.xpath("//span[@data-aura-class='forceSocialPhoto']//span")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//a[contains(@class,'logout')]")).click();
-		
-		driver.close();
+
 		
 	}
 

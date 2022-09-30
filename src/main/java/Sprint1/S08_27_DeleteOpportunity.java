@@ -13,30 +13,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_27_DeleteOppurtunity {
-	@Test
+public class S08_27_DeleteOpportunity extends ParentClass {
+	@Test(priority=3)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_27() throws InterruptedException {
-		// download the chromedriver and set the path
-		WebDriverManager.chromedriver().setup();
-
-		// Handle Notification
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-
-		ChromeDriver driver = new ChromeDriver(options);
-
-		driver.manage().window().maximize();
-
-		// 1. Login to https://login.salesforce.com
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.id("Login")).click();
-
-		Thread.sleep(2000);
-
+	public void runDeleteOpportunity() throws InterruptedException {
 		// 2. Click on toggle menu button from the left corner
 
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
@@ -55,7 +35,7 @@ public class S08_27_DeleteOppurtunity {
 
 		// 5. Search the Opportunity 'Salesforce Automation by Your Name'
 		//driver.findElement(By.xpath("//input[@name='Opportunity-search-input']")).sendKeys("Salesforce Automation by Viji"+Keys.ENTER);
-		String searchOppText = "SF AT by Viji Ganesan for Deletion";
+		String searchOppText = "Salesforce Automation by Viji Ganesan";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Opportunity-search-input']"));
 		search.sendKeys(searchOppText);
 		search.sendKeys(Keys.ENTER);
@@ -79,11 +59,6 @@ public class S08_27_DeleteOppurtunity {
 		Assert.assertEquals(searchResult, "No items to display.");
 		System.out.println("End");
 		Thread.sleep(3000);
-		driver.close();
-		
-		
-		
-
 	}
 
 }

@@ -11,12 +11,12 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_86_CreateNewChart {
-	@Test
+public class S08_86_CreateNewChart extends ParentClass {
+	@Test(priority=2)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_86() throws InterruptedException {
+	public void runCreateNewChart() throws InterruptedException {
 
-		// 1. Login to https://login.salesforce.com
+	/*	// 1. Login to https://login.salesforce.com
 		// download the chromedriver and set the path
 		WebDriverManager.chromedriver().setup();
 
@@ -32,7 +32,7 @@ public class S08_86_CreateNewChart {
 		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
-
+*/
 		Thread.sleep(5000);
 	
 		//String landingPage = driver.findElement(By.xpath("//div//li/a")).getText();//"Switch to Lightning Experience"
@@ -150,7 +150,7 @@ public class S08_86_CreateNewChart {
 		
 		System.out.println("End --------------------- !");
 		
-		driver.close();
+//		driver.close();
 
 	}
 

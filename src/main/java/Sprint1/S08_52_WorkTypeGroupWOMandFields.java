@@ -11,11 +11,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_52_WorkTypeGroupWOMandFields {
-	@Test
+public class S08_52_WorkTypeGroupWOMandFields extends ParentClass {
+	@Test(priority=4)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_52() throws InterruptedException {
-		// 1. Login to https://login.salesforce.com
+	public void runWorkTypeGroupWOMandFields() throws InterruptedException {
+	/*	// 1. Login to https://login.salesforce.com
 				// download the chromedriver and set the path
 				WebDriverManager.chromedriver().setup();
 
@@ -33,7 +33,7 @@ public class S08_52_WorkTypeGroupWOMandFields {
 				driver.findElement(By.id("Login")).click();
 
 				Thread.sleep(2000);
-
+*/
 				// 2. Click on the toggle menu button from the left corner
 				driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 
@@ -68,7 +68,7 @@ public class S08_52_WorkTypeGroupWOMandFields {
 				System.out.println("End!---------------------!");
 				
 				Thread.sleep(2000);
-				driver.close();
+//				driver.close();
 
 	}
 

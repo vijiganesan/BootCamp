@@ -13,12 +13,12 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_34_CreateLegalEntity {
-	@Test
+public class S08_34_CreateLegalEntity extends ParentClass {
+	@Test(priority=1)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_34() throws InterruptedException {
+	public void runCreateLegalEntity() throws InterruptedException {
 
-		//1. Login to https://login.salesforce.com
+	/*	//1. Login to https://login.salesforce.com
 		//download the chromedriver and set the path
 		WebDriverManager.chromedriver().setup();
 		
@@ -35,7 +35,7 @@ public class S08_34_CreateLegalEntity {
 		driver.findElement(By.id("password")).sendKeys("India$321");
 		driver.findElement(By.id("Login")).click();
 		
-		Thread.sleep(2000);	
+		Thread.sleep(2000);	*/
 		
 		//2. Click on the toggle menu button from the left corner
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
@@ -54,7 +54,7 @@ public class S08_34_CreateLegalEntity {
 		driver.executeScript("arguments[0].click();",legalEntityNew );
 		
 		//6. Enter Name as 'Salesforce Automation by Your Name'
-		String legalEntityName = "Viji Ganesan";
+		String legalEntityName = "Salesforce Automation by Viji Ganesan";
 		driver.findElement(By.xpath("(//input[@class=' input'])[1]")).sendKeys(legalEntityName);
 		
 		//7.Click save and verify Legal Entity Name

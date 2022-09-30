@@ -12,11 +12,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_35_EditLegalEntity {
-	@Test
+public class S08_35_EditLegalEntity extends ParentClass {
+	@Test(priority=2)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_35() throws InterruptedException {
-		//1. Login to https://login.salesforce.com
+	public void runEditLegalEntity() throws InterruptedException {
+	/*	//1. Login to https://login.salesforce.com
 				//download the chromedriver and set the path
 				WebDriverManager.chromedriver().setup();
 				
@@ -34,7 +34,7 @@ public class S08_35_EditLegalEntity {
 				driver.findElement(By.id("Login")).click();
 				
 				Thread.sleep(2000);	
-				
+				*/
 				//2. Click on the toggle menu button from the left corner
 				driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 						
@@ -49,7 +49,7 @@ public class S08_35_EditLegalEntity {
 				
 				//5) Search the Legal Entity 'Salesforce Automation by Your Name'
 				//input[@type='search']
-				String searchLegalEntityText = "Viji Ganeesan";
+				String searchLegalEntityText = "Salesforce Automation by Viji Ganesan";
 				WebElement search = driver.findElement(By.xpath("//input[@name='LegalEntity-search-input']"));
 				search.sendKeys(searchLegalEntityText,Keys.ENTER);
 				
@@ -83,7 +83,7 @@ public class S08_35_EditLegalEntity {
 				System.out.println("End");
 				Thread.sleep(3000);
 
-				driver.close();
+			//	driver.close();
 				
 	}
 

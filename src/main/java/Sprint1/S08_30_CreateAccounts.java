@@ -11,30 +11,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class S08_30_CreateAccounts {
-	@Test
+public class S08_30_CreateAccounts extends ParentClass {
+	@Test(priority=1)
 	//public static void main(String[] args) throws InterruptedException {
-	public void TC_S08_30() throws InterruptedException {
-		// TODO Auto-generated method stub
-		//download the chromedriver and set the path
-		WebDriverManager.chromedriver().setup();
-				
-		//Handle Notification
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-				
-		ChromeDriver driver = new ChromeDriver(options);
-				
-		driver.manage().window().maximize();
-				
-		//1. Login to https://login.salesforce.com
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.id("Login")).click();
-				
-		Thread.sleep(2000);		
+	public void runCreateAccounts() throws InterruptedException {
 
 		//2. Click on toggle menu button from the left corner
 				
@@ -56,7 +36,7 @@ public class S08_30_CreateAccounts {
 		driver.findElement(By.xpath("//div[@title='New']")).click();
 		
 		//6. Enter 'your name' as account name
-		String accName = "New Account";
+		String accName = "Salesforce Automation by Viji Ganesan";
 		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(accName);
 		
 		//7. Select Ownership as Public  
@@ -76,8 +56,7 @@ public class S08_30_CreateAccounts {
 		driver.findElement(By.xpath("//span[@data-aura-class='forceSocialPhoto']//span")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//a[contains(@class,'logout')]")).click();
-		
-		driver.close();
+
 	}
 
 }
