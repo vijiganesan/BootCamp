@@ -1,6 +1,7 @@
 package Sprint1;
 
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -11,14 +12,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S08_25_CreateOpportunity extends ParentClass {
-	@Test(priority=1)
+	
+	@BeforeTest
+	public void sendFileName() {
+		
+		workBookName = "CreateOpportunity";
+
+	}
+	
+	
+	@Test(priority=1, dataProvider="fetchData")
 	//public static void main(String[] args) throws InterruptedException {
-	public void runCreateOpportunity() throws InterruptedException {
+	public void runCreateOpportunity(String module, String opportunityName) throws InterruptedException {
 		
 		//2. Click on toggle menu button from the left corner
 		
@@ -27,7 +39,7 @@ public class S08_25_CreateOpportunity extends ParentClass {
 				
 		//3. Click view All and click Sales from App Launcher
 		driver.findElement(By.xpath("//button[text()='View All']")).click();
-		driver.findElement(By.xpath("//div/input[@class='slds-input']")).sendKeys("sales");
+		driver.findElement(By.xpath("//div/input[@class='slds-input']")).sendKeys(module);
 		
 		driver.findElement(By.xpath("(//mark[text()='Sales'])[3]")).click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -41,8 +53,8 @@ public class S08_25_CreateOpportunity extends ParentClass {
 		driver.findElement(By.linkText("New")).click();
 		
 		//6. Enter Opportunity name as 'Salesforce Automation by Your Name,Get the text and Store it 
-		String oppName = "Salesforce Automation by Viji Ganesan";
-		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(oppName);
+		//String oppName = "Salesforce Automation by Viji Ganesan";
+		driver.findElement(By.xpath("//div/input[@name='Name']")).sendKeys(opportunityName);
 				
 		//7. Choose close date as Today
 		driver.findElement(By.xpath("//div/input[@name='CloseDate']")).click();
@@ -70,7 +82,7 @@ public class S08_25_CreateOpportunity extends ParentClass {
 		
 		WebElement toast = driver.findElement(By.xpath("//span[contains(@class,'toastMessage')]/a"));
 		
-		wait.until(ExpectedConditions.textToBePresentInElement(toast, oppName));
+		wait.until(ExpectedConditions.textToBePresentInElement(toast, opportunityName));
 
 		
 		String oppCreatedToast = toast.getText();
@@ -79,5 +91,11 @@ public class S08_25_CreateOpportunity extends ParentClass {
 		Thread.sleep(3000);
 	
 	}
+	
+/*	@DataProvider(name="fetchData")
+	public String[][] sendData() throws IOException {
 
+		return ReadExcel.readData("CreateOpportunity");
+	}
+*/
 }

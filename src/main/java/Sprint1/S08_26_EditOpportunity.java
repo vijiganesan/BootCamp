@@ -1,5 +1,6 @@
 package Sprint1;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -8,14 +9,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S08_26_EditOpportunity extends ParentClass {
-	@Test(priority=2)
+	
+	@BeforeTest
+	public void sendFileName() {
+		
+		workBookName = "EditOpportunity";
+
+	}
+	
+	@Test(dependsOnMethods= {"Sprint1.S08_25_CreateOpportunity.runCreateOpportunity"}, dataProvider="fetchData")// ( dataProvider="fetchData") //
 	//public static void main(String[] args) throws InterruptedException {
-	public void runEditOpportunity() throws InterruptedException {
+	public void runEditOpportunity(String module, String opportunityName, String description) throws InterruptedException {
 
 		// 2. Click on toggle menu button from the left corner
 
@@ -24,7 +35,7 @@ public class S08_26_EditOpportunity extends ParentClass {
 
 		// 3. Click view All and click Sales from App Launcher
 		driver.findElement(By.xpath("//button[text()='View All']")).click();
-		driver.findElement(By.xpath("//div/input[@class='slds-input']")).sendKeys("sales");
+		driver.findElement(By.xpath("//div/input[@class='slds-input']")).sendKeys(module);
 
 		driver.findElement(By.xpath("(//mark[text()='Sales'])[3]")).click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -35,9 +46,9 @@ public class S08_26_EditOpportunity extends ParentClass {
 
 		// 5. Search the Opportunity 'Salesforce Automation by Your Name'
 		//driver.findElement(By.xpath("//input[@name='Opportunity-search-input']")).sendKeys("Salesforce Automation by Viji" + Keys.ENTER);
-		String searchOppText = "Salesforce Automation by Viji Ganesan";
+		//String searchOppText = "Salesforce Automation by Viji Ganesan";
 		WebElement search = driver.findElement(By.xpath("//input[@name='Opportunity-search-input']"));
-		search.sendKeys(searchOppText,Keys.ENTER);
+		search.sendKeys(opportunityName,Keys.ENTER);
 		
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//div[@class='slds-popover__body']")).click();
@@ -55,21 +66,29 @@ public class S08_26_EditOpportunity extends ParentClass {
 		driver.findElement(By.xpath("//input[@name='CloseDate']")).click();
 		WebElement today = driver.findElement(By.xpath("//tbody//td[contains(@class,'slds-is-today')]"));
 		String todayDate = today.getText();
+		System.out.println("printing todayDate : " +todayDate);
 		int i=Integer.parseInt(todayDate)+1;
-		driver.findElement(By.xpath("//span[text()='"+i+"']")).click();
+		System.out.println("printing nextdate : " +i);
+		WebElement nextDate = driver.findElement(By.xpath("//span[text()='"+i+"']"));
+		driver.executeScript("arguments[0].click();", nextDate);
+		//driver.findElement(By.xpath("//span[text()='"+i+"']")).click();
+		System.out.println("printing 1************************");
 		
 		//8. Select 'Stage' as Perception Analysis
-		driver.findElement(By.xpath("//button[contains(@aria-label,'Stage')]")).click();
-		driver.findElement(By.xpath("//span[@title='Perception Analysis']")).click();
+		WebElement stage = driver.findElement(By.xpath("//button[contains(@aria-label,'Stage')]"));
+		driver.executeScript("arguments[0].click();", stage);
+		//driver.findElement(By.xpath("//button[contains(@aria-label,'Stage')]")).click();
 		
+		driver.findElement(By.xpath("//span[@title='Perception Analysis']")).click();
+		System.out.println("printing 2************************");
 		//9. Select Deliver Status as In Progress
 		WebElement statusButton = driver.findElement(By.xpath("//button[@aria-label='Delivery/Installation Status, --None--']"));
 		driver.executeScript("arguments[0].click();", statusButton);
 		driver.findElement(By.xpath("//span[@title='In progress']")).click();
-		
+		System.out.println("printing 3************************");
 		//10. Enter Description as SalesForce
-		driver.findElement(By.xpath("//textarea[@class='slds-textarea']")).sendKeys("SalesForce"+Keys.ENTER);
-		
+		driver.findElement(By.xpath("//textarea[@class='slds-textarea']")).sendKeys(description+Keys.ENTER);
+		System.out.println("printing 4************************");
 		//11. Click on Save  
 		WebElement saveButton = driver.findElement(By.xpath("//button[text()='Save']"));
 		driver.executeScript("arguments[0].click();", saveButton);
@@ -86,5 +105,12 @@ public class S08_26_EditOpportunity extends ParentClass {
 		Thread.sleep(3000);
 
 	}
+/*	
+	@DataProvider(name="fetchData")
+	public String[][] sendData() throws IOException {
+		
+		return ReadExcel.readData("EditOpportunity");
 
+	}
+*/
 }
